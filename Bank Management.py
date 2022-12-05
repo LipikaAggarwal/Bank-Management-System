@@ -25,24 +25,6 @@ global customerScreen
 admin_id = 0000
 admin_passwd = 'root'
 
-
-# def read_table(table_name="", query=""):
-#     cursor = connect.cursor()
-#     result = None
-#     if query == "":
-#         read_table_query = "SELECT * FROM " + table_name
-#     else:
-#         read_table_query = query
-
-#     try:
-#         cursor.execute(read_table_query)
-#         result = cursor.fetchall()
-#         column_names = [description[0] for description in cursor.description]
-#         print(result, headers=column_names)
-
-#     except Error as e:
-#         tk.messagebox.showerror("Error", f"\nERROR : {e} occurred !\n", parent=adminscreen)
-
 def ck_user():
     cursor = connect.cursor()
     cursor.execute("select * from users")
@@ -75,84 +57,6 @@ def ck_user():
                 
     Button(adminscreen,text="Back",command=main_menu_admin,activebackground="red",activeforeground="black",fg="white",bg="darkblue",width=20).place(x=180,y=280)
 
-# def close_submit(account_no):
-#     if account_no!=" ":
-#         cursor = connect.cursor()
-#         sql= "delete from users where ACCNO=%s"
-#         user=(account_no)
-#         cursor.execute(sql,user)
-#         cursor.commit()
-#         tk.messagebox.showinfo("Closed Successful", "Account {} closed successfully".format(account_no), parent=adminscreen)
-#     else :
-#         tk.messagebox.showerror("Invalid credentials ", "Wrong account no.! Try again.", parent=adminscreen)
-# def close_account():
-#     accntnoLabel = tk.Label(adminscreen, text="Account No")
-#     accntnoLabel.grid(row=1, column=0, padx=10, pady=(40,40))
-#     account_no = tk.Entry(adminscreen)
-#     account_no.grid(row=1, column=1, padx=20, pady=(40,40))
-#     def delete_all():
-#         account_no.delete(0, END)
-#     SubmitButton = tk.Button(adminscreen, text="Submit", command=lambda:[close_submit(account_no.get()),delete_all()])
-#     SubmitButton.grid(row=1, column=2, pady=(40,40))
-# def update_account():
-#     global updatescreen
-#     updatescreen = Toplevel(root) 
-#     updatescreen.title("Update")
-#     updatescreen.geometry('360x480')
-
-#     accntnoLabel = tk.Label(updatescreen, text="Account No")
-#     accntnoLabel.grid(row=1, column=0, padx=10, pady=(40,40))
-#     accntnoEntry = tk.Entry(updatescreen)
-#     accntnoEntry.grid(row=1, column=1, padx=20, pady=(40,40))
-
-#     UpdateButton = tk.Button(updatescreen, text="Next", command=lambda:[update()])
-#     UpdateButton.grid(row=2, column=1, padx=(20,25), pady=(20,20))
-
-    # def update():
-    #     cursor = connect.cursor()
-    #     sql="select ACCNO from users where ACCNO=%s"
-    #     user=(accntnoEntry.get(),)
-    #     cursor.execute(sql,user)
-    #     result= cursor.fetchall()
-    #     correct=len(result)
-
-    #     if correct>0:
-    #         nameLabel = tk.Label(updatescreen, text="Name")
-    #         nameLabel.grid(row=0, column=0, padx=10, pady=(40,40))
-    #         nameEntry = tk.Entry(updatescreen)
-    #         nameEntry.grid(row=0, column=1, padx=20, pady=(40,40))
-
-    #         phoneLabel = tk.Label(updatescreen, text="Phone No.")
-    #         phoneLabel.grid(row=1, column=0, padx=10, pady=(40,40))
-    #         phoneEntry = tk.Entry(updatescreen)
-    #         phoneEntry.grid(row=1, column=1, padx=20, pady=(40,40))
-
-    #         pinLabel = tk.Label(updatescreen, text="PIN")
-    #         pinLabel.grid(row=2, column=0, padx=10, pady=(40,40))
-    #         pinEntry = tk.Entry(updatescreen, show="*")
-    #         pinEntry.grid(row=2, column=1, padx=20, pady=(40,40))
-    #         # update = "UPDATE users SET %s,%s,%s where ACCNO=%s"
-
-    #         UpdateButton = tk.Button(updatescreen, text="Submit", command=lambda:["UPDATE users SET %s,%s,%s where ACCNO=%s"])
-    #         UpdateButton.grid(row=3, column=1, padx=(20,25), pady=(20,20))
-    #     else:        
-    #         tk.messagebox.showerror("Failed To Update", "Invalid account no! Try again.", parent=updatescreen)
-
-    # nameLabel = tk.Label(registerScreen, text="Name")
-    # nameLabel.grid(row=0, column=0, padx=10, pady=(40,40))
-    # nameEntry = tk.Entry(registerScreen)
-    # nameEntry.grid(row=0, column=1, padx=20, pady=(40,40))
-
-    # phoneLabel = tk.Label(registerScreen, text="Phone No.")
-    # phoneLabel.grid(row=1, column=0, padx=10, pady=(40,40))
-    # phoneEntry = tk.Entry(registerScreen)
-    # phoneEntry.grid(row=1, column=1, padx=20, pady=(40,40))
-
-    # pinLabel = tk.Label(registerScreen, text="PIN")
-    # pinLabel.grid(row=2, column=0, padx=10, pady=(40,40))
-    # pinEntry = tk.Entry(registerScreen, show="*")
-    # pinEntry.grid(row=2, column=1, padx=20, pady=(40,40))
-
 def main_menu_admin():
     global adminscreen
     adminscreen = Toplevel(root) 
@@ -160,29 +64,11 @@ def main_menu_admin():
     adminscreen.geometry('480x480')
     canvas = Canvas(adminscreen, width=500, height=450, bd=0, highlightthickness=0, highlightbackground="yellow", bg="Light blue")
     canvas.place(x=0,y=0)
-    # UpdateLabel = tk.Label(adminscreen, text="Update existing Account")
-    # UpdateLabel.grid(row=2, column=0, padx=10, pady=(20,20))
-    # UpdateButton = tk.Button(adminscreen, text="Update", command=lambda:[])
-    # UpdateButton.grid(row=2, column=1, padx=(20,25), pady=(20,20))
-
-    # CloseLabel = tk.Label(adminscreen, text="Close existing Account",fg="black",bg="light blue",width=20)
-    # CloseLabel.grid(row=3, column=0, padx=10, pady=(20,20))
-    # CloseButton = tk.Button(adminscreen, text="Close", command=lambda:[close_account()],activebackground="white",activeforeground="black",fg="white",bg="black",width=20)
-    # CloseButton.grid(row=3, column=1, padx=(20,25), pady=(20,20))
-
+ 
     Customers_detailsLabel = tk.Label(adminscreen, text="Customers Details",fg="black",bg="light blue",width=20)
     Customers_detailsLabel.grid(row=4, column=0, padx=10, pady=(20,20))
     Customers_detailsButton = tk.Button(adminscreen, text="Customers Details", command=lambda:[ck_user()],activebackground="white",activeforeground="black",fg="white",bg="black",width=20)
     Customers_detailsButton.grid(row=4, column=1, padx=(20,25), pady=(20,20))
-
-    # Transaction_detailsLabel = tk.Label(adminscreen, text="Transaction details")
-    # Transaction_detailsLabel.grid(row=5, column=0, padx=10, pady=(20,20))
-    # Transaction_detailsButton = tk.Button(adminscreen, text="Transaction details", command=lambda:[ck_user("transactions")])
-    # Transaction_detailsButton.grid(row=5, column=1, padx=(20,25), pady=(20,20))
-
-# def back(page):
-#     userButton = tk.Button(root, text="Back", command=lambda:[page])
-#     userButton.grid(row=6, column=0, padx=140, pady=(40,40))
 
 adminLabel = tk.Label(root, text="Admin Console",fg="black",bg="light blue",width=20)
 adminLabel.grid(row=2, column=0, pady=20)
@@ -199,9 +85,6 @@ userButton.grid(row=5, column=0, padx=140, pady=(40,40))
 def regSubmit(nameEntry,pinEntry,initialDepositEntry):
     if nameEntry != "" and pinEntry != "" and initialDepositEntry != "" :
         c=connect.cursor()
-        # c.execute("SELECT MAX(ACCNO) from users")
-        # maxAccount_no = c.fetchall()
-        # print( maxAccount_no)
         connect.commit()
         account_no = hashlib.md5(f'{nameEntry}{initialDepositEntry}{pinEntry}'.encode('utf-8')).hexdigest()
         a=''.join(i for i in account_no if i.isdigit())[0:11:1]
@@ -246,11 +129,6 @@ def displayRegisterScreen():
         initialDepositEntry.delete(0, END)
     regSubmitButton = tk.Button(registerScreen, text="Submit", command=lambda:[regSubmit(nameEntry.get(), pinEntry.get(), initialDepositEntry.get()),delete_all()],activebackground="white",activeforeground="black",fg="white",bg="black",width=20)
     regSubmitButton.grid(row=3, column=1, pady=(40,40))
-# def customer1():
-#     registerLabel = tk.Label(root, text="Or register for a new account:")
-#     registerLabel.grid(row=2, column=0, pady=20)
-#     registerButton = tk.Button(root, text="Register", command=displayRegisterScreen)
-#     registerButton.grid(row=3, column=0, padx=140, pady=(40,40))
 
 def loginSubmit(name, account_no, pin):
     if name != "" and account_no != ""  and pin != "":
@@ -268,7 +146,6 @@ def loginSubmit(name, account_no, pin):
     else:
         tk.messagebox.showerror("Login failed", "Invalid Credentials!", parent=loginScreen)
     
-
 def displayLoginScreen():
     global loginScreen
     loginScreen = Toplevel(root)
@@ -326,9 +203,7 @@ def customer():
     registerLabel.grid(row=2, column=0, pady=20)
     registerButton = tk.Button(customerScreen, text="Register", command=displayRegisterScreen,activebackground="red",activeforeground="black",fg="white",bg="black",width=20)
     registerButton.grid(row=3, column=0, padx=140, pady=(40,40))
-# loginButton.pack()
 
-# with open("transaction.txt","w+") as f:
 def deposit(account_no, depositEntry):
     if account_no != "" and depositEntry != "" :
         c = connect.cursor()
@@ -342,7 +217,6 @@ def deposit(account_no, depositEntry):
         b = b[0][0]
         connect.commit()
         tk.messagebox.showinfo("Money Deposited Successfully", "You have deposited ₹ {}\n Updated balance: ₹ {}".format(depositEntry, b))
-        # a=f.write("Money Deposited", depositEntry,date,end="\n")
     else:
         tk.messagebox.showerror("Error", "Invalid amount entered!", parent=servicesScreen)
         
@@ -368,15 +242,9 @@ def withdraw(account_no, withdrawEntry):
             b = b[0][0]        
             connect.commit()
             tk.messagebox.showinfo("Money Withdrawn Successfully", "You have withdrawn ₹ {}\n Updated balance: ₹ {}".format(withdrawEntry, b), parent=servicesScreen)
-            # a=f.write("Money Withdrawn",withdrawEntry ,date,end="\n")
     else:
         tk.messagebox.showerror("Error", "Invalid amount entered!", parent=servicesScreen)
-# def transaction(date):
-#     b=f.read()
-#     c=b.splitlines()
-#     d=c.split("")
-#     for i in d:
-#         servicesScreen.title("Transaction History", "Amount ₹ {}","Date {}" .format(i[1], i[2]), parent=servicesScreen)
+        
 def checkBalance(account_no):
     c = connect.cursor()
     sql="SELECT AMOUNT FROM users WHERE ACCNO=%s"
@@ -409,12 +277,6 @@ def displayServicesScreen(account_no):
     depositEntry = tk.Entry(servicesScreen)
     depositEntry.grid(row=0, column=1, padx=20, pady=(20,20))
     
-    # dateLabel = tk.Label(servicesScreen, text="Date")
-    # dateLabel.grid(row=1, column=0, padx=10, pady=(20,20))
-    
-    # dateEntry = tk.Entry(servicesScreen)
-    # dateEntry.grid(row=1, column=1, padx=20, pady=(20,20))
-    
     depositButton = tk.Button(servicesScreen, text="Deposit", command=lambda:[deposit(account_no, depositEntry.get()), clearDeposit()])
     depositButton.grid(row=2, column=1, padx=(20,25), pady=(20,20))
     
@@ -429,8 +291,5 @@ def displayServicesScreen(account_no):
     
     balanceButton = tk.Button(servicesScreen, text="Check Balance", command=lambda:checkBalance(account_no))
     balanceButton.grid(row=5, column=1, padx=(20,20), pady=(20,20))
-    # balanceButton = tk.Button(servicesScreen, text="Transaction History", command=lambda:transaction(dateEntry.get()))
-    # balanceButton.grid(row=6, column=1, padx=(20,20), pady=(20,20))
-    
-                   
+               
 root.mainloop()
